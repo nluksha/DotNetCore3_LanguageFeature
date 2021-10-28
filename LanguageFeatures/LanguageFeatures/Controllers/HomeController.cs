@@ -35,9 +35,15 @@ namespace LanguageFeatures.Controllers
                 new Product { Name = "Corner flag", Price = 34M }
                 );
 
-            long? length = await MyAsyncMethods.GetPageLength();
+            // long? length = await MyAsyncMethods.GetPageLength();
 
-            return View(new[] { $"Length: {length}"});
+            var output = new List<string>();
+            await foreach (var len in MyAsyncMethods.GetPageLengths(output, "apress.com", "microsoft.com", "amazon.com"))
+            {
+                output.Add($"Page length: {len}");
+            }
+
+            return View(output);
         }
     }
 }
