@@ -28,7 +28,12 @@ namespace LanguageFeatures.Controllers
                 ["Lifejacket"] = new Product { Name = "Lifejacket" }
             };
 
-            return View(products.Keys);
+            ShoppingCart cart = new ShoppingCart { Products = Product.GetProducts() };
+            var cartTotal = cart.FiterByPrice(20).Fiter(s => s?.Name?[0] == 'S').TotalPrices();
+
+            return View(new string[] { $"Total: {cartTotal:C2}"});
         }
+
+
     }
 }
