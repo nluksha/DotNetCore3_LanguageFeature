@@ -29,7 +29,7 @@ namespace LanguageFeatures.Models
             }
         }
 
-        public static IEnumerable<Product> Fiter(this IEnumerable<Product> productEnum, Func<Product, bool> selector)
+        public static IEnumerable<Product> Filter(this IEnumerable<Product> productEnum, Func<Product, bool> selector)
         {
             foreach (var prod in productEnum)
             {

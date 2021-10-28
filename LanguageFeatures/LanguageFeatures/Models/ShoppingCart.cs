@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 
 namespace LanguageFeatures.Models
 {
-    public class ShoppingCart: IEnumerable<Product>
+    public class ShoppingCart: IProductSelection
     {
-        public IEnumerable<Product> Products { get; set; }
+        private List<Product> products = new List<Product>();
 
-        public IEnumerator<Product> GetEnumerator()
-        {
-            return Products.GetEnumerator();
-        }
+        public IEnumerable<Product> Products { get => products; }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        public ShoppingCart(params Product[] prods)
         {
-            return GetEnumerator();
+            products.AddRange(prods);
         }
     }
 }

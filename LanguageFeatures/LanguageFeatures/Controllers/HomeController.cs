@@ -28,12 +28,14 @@ namespace LanguageFeatures.Controllers
                 ["Lifejacket"] = new Product { Name = "Lifejacket" }
             };
 
-            ShoppingCart cart = new ShoppingCart { Products = Product.GetProducts() };
-            var cartTotal = cart.FiterByPrice(20).Fiter(s => s?.Name?[0] == 'S').TotalPrices();
+            IProductSelection cart = new ShoppingCart(
+                new Product { Name = "Kayak", Price = 275M },
+                new Product { Name = "Lifejacket", Price = 48.95M },
+                new Product { Name = "Soccer ball", Price = 19M },
+                new Product { Name = "Corner flag", Price = 34M }
+                );
 
-            return View(new string[] { $"Total: {cartTotal:C2}"});
+            return View(cart.Names);
         }
-
-
     }
 }
