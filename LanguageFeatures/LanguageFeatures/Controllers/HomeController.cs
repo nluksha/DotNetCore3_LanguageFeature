@@ -9,7 +9,7 @@ namespace LanguageFeatures.Controllers
 {
     public class HomeController : Controller
     {
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
             var results = new List<string>();
 
@@ -35,7 +35,9 @@ namespace LanguageFeatures.Controllers
                 new Product { Name = "Corner flag", Price = 34M }
                 );
 
-            return View(cart.Names);
+            long? length = await MyAsyncMethods.GetPageLength();
+
+            return View(new[] { $"Length: {length}"});
         }
     }
 }
